@@ -34,8 +34,8 @@ for i in range(len(table_group)):
 #     connection.execute_query('insert into timetable.table(id, id_group, week, day, time, subject, teacher, classroom, address) values ({},{},"{}","{}","{}","{}","{}","{}","{}")'.format(n, value, time_table_groups[i]['week'], time_table_groups[i]['day'], time_table_groups[i]['time'], time_table_groups[i]['subject'], time_table_groups[i]['teacher'], time_table_groups[i]['classroom'], time_table_groups[i]['address']))
 #     n += 1
 
-time_table_end = connection.get_data_from_table('select * from timetable.table')
-print(time_table_end)
+# time_table_end = connection.get_data_from_table('select * from timetable.table')
+# print(time_table_end)
 
 
 @app.route("/signin", methods=["POST"])

@@ -180,5 +180,5 @@ def get_timetable():
 
     # return group_timetable_even, group_timetable_odd
 
-if __name__ == "__main__":
-    print(get_groupp())
+# if __name__ == "__main__":
+#     print(get_groupp())

@@ -63,8 +63,7 @@ def log_in_user():
 
 @app.route('/get_timetable', methods=["POST"])
 def get_timetable():
-    json_obj = json.loads(request.get_data())
-    group = json_obj["group"]
+    group = json.loads(request.get_data())
     time_table_odd = []
     time_table_even = []
 
@@ -108,7 +107,7 @@ def get_timetable():
                     "classroom": time_table_end[i][7],
                     "address": time_table_end[i][8]
                 })
-    return time_table_even, time_table_odd
+    return json.dumps({'even': time_table_even, 'odd': time_table_odd})
 
 
 

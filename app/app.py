@@ -55,6 +55,8 @@ def log_in_user():
         data = dataFromDB[0][3]
         ans["error"] = "false"
         ans["data"] = data
+        ans["name"] = dataFromDB[0][1]
+        ans["surname"] = dataFromDB[0][2]
 
 
     json_data = json.dumps(ans)

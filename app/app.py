@@ -57,6 +57,8 @@ def log_in_user():
         ans["data"] = data
         ans["name"] = dataFromDB[0][1]
         ans["surname"] = dataFromDB[0][2]
+        ans["login"] = dataFromDB[0][4]
+        ans["len_password"] = len(dataFromDB[0][5])
 
 
     json_data = json.dumps(ans)
@@ -110,6 +112,14 @@ def get_timetable():
                     "address": time_table_end[i][8]
                 })
     return json.dumps({'even': time_table_even, 'odd': time_table_odd})
+
+
+@app.route('/faq', methods=['POST'])
+def get_feedback():
+    json_obj = json.loads(request.get_data())
+    report = json_obj['report']
+
+    connection.execute_query('insert into timetable.feedback(feedback) values({})'.format(report))
 
 
 

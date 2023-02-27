@@ -58,7 +58,7 @@ def log_in_user():
         ans["name"] = dataFromDB[0][1]
         ans["surname"] = dataFromDB[0][2]
         ans["login"] = dataFromDB[0][4]
-        ans["len_password"] = len(dataFromDB[0][5])
+        ans["password"] = len(dataFromDB[0][5])
 
 
     json_data = json.dumps(ans)
@@ -78,6 +78,7 @@ def get_timetable():
             time_table_end[i][2].replace('[', '').replace(']', '').replace('\'', '')
             if(time_table_end[i][2] == 'н/н'):
                 time_table_odd.append({
+                    "week" : time_table_end[i][2],
                     "day" : time_table_end[i][3],
                     "time": time_table_end[i][4],
                     "subject": time_table_end[i][5],
@@ -87,6 +88,7 @@ def get_timetable():
                 })
             elif(time_table_end[i][2] == 'ч/н'):
                 time_table_even.append({
+                    "week" : time_table_end[i][2],
                     "day" : time_table_end[i][3],
                     "time": time_table_end[i][4],
                     "subject": time_table_end[i][5],
@@ -96,6 +98,7 @@ def get_timetable():
                 })
             else:
                 time_table_odd.append({
+                    "week" : time_table_end[i][2],
                     "day" : time_table_end[i][3],
                     "time": time_table_end[i][4],
                     "subject": time_table_end[i][5],
@@ -104,6 +107,7 @@ def get_timetable():
                     "address": time_table_end[i][8]
                 })
                 time_table_even.append({
+                    "week" : time_table_end[i][2],
                     "day" : time_table_end[i][3],
                     "time": time_table_end[i][4],
                     "subject": time_table_end[i][5],
@@ -119,7 +123,8 @@ def get_feedback():
     json_obj = json.loads(request.get_data())
     report = json_obj['report']
 
-    connection.execute_query('insert into timetable.feedback(feedback) values({})'.format(report))
+    connection.execute_query('insert into timetable.feedback(feedback) values("{}")'.format(report))
+    return json.dumps({})
 
 
 
